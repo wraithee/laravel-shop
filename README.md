@@ -1,3 +1,4 @@
+[![Laravel](https://github.com/wraithee/laravel-shop/actions/workflows/workflow.yml/badge.svg)](https://github.com/wraithee/laravel-shop/actions/workflows/workflow.yml)
 # Laravel Shop Admin Panel
 
 Простая админка для интернет-магазина на Laravel, написанная в качестве учебного пет-проекта при изучении PHP
