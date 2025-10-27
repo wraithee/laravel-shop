@@ -31,8 +31,9 @@ php artisan migrate:fresh
 npm install && npm run dev
 php artisan serve
 ```
+3. Админка расположена по пути localhost/products
 
-(так же можно использовать laravel valet вместо ```php artisan serve```, если вы "припарковали" директорию с проектом командой ```valet park```, проект будет доступен по локальной ссылке НАЗВАНИЕ_ДИРЕКТОРИИ.test)
+(так же можно использовать laravel valet вместо ```php artisan serve```, если вы "припарковали" директорию с проектом командой ```valet park```, проект будет доступен по локальной ссылке НАЗВАНИЕ_ДИРЕКТОРИИ.test/products)
 
 ## Тесты:
 ```bash
