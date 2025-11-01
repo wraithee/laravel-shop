@@ -32,6 +32,13 @@ class ProductController extends Controller
             'description' => 'nullable|string',
         ]);
 
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+        }
+        $validated['image'] = $imagePath;
+
         Product::create($validated);
 
         return redirect(route('products.index'));
@@ -40,7 +47,8 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
 
@@ -81,5 +89,10 @@ class ProductController extends Controller
         else {
             return redirect(route('products.index'));
         }
+    }
+
+    public function getAll()
+    {
+        return Product::all();
     }
 }

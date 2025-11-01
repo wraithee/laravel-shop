@@ -18,7 +18,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('products.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('products.store') }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <div>
@@ -28,6 +28,11 @@
                         @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
 
+                    <div>
+                        <label for="image" class="block test-sm font-medium text-gray-100 mb-1">Изображение:</label>
+                        <input type="file" name="image" class="text-white bg-green-700 hover:bg-green-900 rounded-lg">
+                        @error('image') <p class="mt-1 text-xd text-red-500">{{ $message }}</p> @enderror
+                    </div>
                     <div>
                         <label for="price" class="block text-sm font-medium text-gray-100 mb-1">Цена:</label>
                         <input type="number" name="price" id="price" value="{{ old('price') }}" step="0.01" required

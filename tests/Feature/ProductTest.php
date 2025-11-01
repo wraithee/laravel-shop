@@ -15,6 +15,8 @@ class ProductTest extends TestCase
     public function test_products_page_loads_successfully()
     {
         $user = User::factory()->create();
+        User::whereId($user->id)->update(['is_admin' => 1]);
+        $user->refresh();
         $this->actingAs($user);
 
         $response = $this->get('/products');

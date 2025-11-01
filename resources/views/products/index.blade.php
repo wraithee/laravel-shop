@@ -22,9 +22,10 @@
             @else
                 <div class="overflow-x-auto bg-gray-800 shadow-md rounded-lg">
                     <table class="min-w-full divide-y">
-                        <thead class="bg-gray-350">
+                        <thead class="bg-gray-900">
                         <tr>
                             <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">#</th>
+                            <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Изображение</th>
                             <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Название</th>
                             <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Цена</th>
                             <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Категория</th>
@@ -34,8 +35,11 @@
                         </thead>
                         <tbody class="divide-y">
                         @foreach($products as $product)
-                            <tr class="hover:bg-gray-900">
+                            <tr class="hover:bg-gray-700">
                                 <td class="py-3 px-4 text-sm text-gray-300">{{ $product->id }}</td>
+                                <td class="py-3 px-4 text-sm text-gray-300">
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ __('Изображение не найдено') }}" class="h-auto max-w-full object-contain py-3 px-4 rounded">
+                                </td>
                                 <td class="py-3 px-4 text-sm text-gray-200 font-medium">{{ $product->name }}</td>
                                 <td class="py-3 px-4 text-sm text-gray-200">{{ number_format($product->price, 2, ',', ' ') }} $</td>
                                 <td class="py-3 px-4 text-sm text-gray-200">{{ $product->category->name ?? 'Без категории' }}</td>
@@ -47,11 +51,21 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 text-right space-x-2">
-                                    <a href="{{ route('products.edit', $product->id) }}"
-                                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-1.5 rounded transition">
-                                        ✏️ Изменить
-                                    </a>
+                                    <div class="py-1 px-1">
+                                        <a href="{{ route('products.show', $product->id) }}"
+                                            class="inline-block bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1.5 rounded transition">
+                                            ↪️ Перейти
+                                        </a>
+                                    </div>
 
+                                    <div class="py-1 px-1">
+                                        <a href="{{ route('products.edit', $product->id) }}"
+                                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-1.5 rounded transition">
+                                            ✏️ Изменить
+                                        </a>
+                                    </div>
+
+                                    <div class="py-1 px-1">
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline"
                                           onsubmit="return confirm('Удалить {{ addslashes($product->name) }}?');">
                                         @csrf
@@ -61,6 +75,7 @@
                                             🗑️ Удалить
                                         </button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
