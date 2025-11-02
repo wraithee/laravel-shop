@@ -24,3 +24,4 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 /resources/views/products_backup
+docker-compose.yml.backup
